@@ -10,7 +10,7 @@ from Blog.views import ArticlesViewset
 router = DefaultRouter()
 
 # 文章
-router.register(r'post', ArticlesViewset, base_name="article")
+router.register(r'posts', ArticlesViewset, base_name="article")
 
 
 urlpatterns = [
