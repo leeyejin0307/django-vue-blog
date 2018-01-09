@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../pages/home/index'
+import PostDetail from '../pages/home/index'
 
 Vue.use(Router)
 
@@ -14,6 +15,15 @@ export default new Router({
       meta: {
         title: '首页 - Blog'
       }
-    }
+    },
+    {
+      /** 文章详情页 **/
+      path: '/post/:id/',
+      name: 'PostDetail',
+      component: PostDetail,
+      meta: {
+        title: '首页 - Blog'
+      }
+    },
   ]
 })

@@ -7,7 +7,7 @@ class UserProfile(AbstractUser):
     用户资料
     """
     email = models.EmailField(verbose_name="邮箱")
-    point = models.IntegerField(default=0, verbose_name="积分")
+    point = models.PositiveIntegerField(default=0, verbose_name="积分")
 
     class Meta:
         verbose_name = "用户资料"

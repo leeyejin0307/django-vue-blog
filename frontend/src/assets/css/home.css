@@ -1,0 +1,70 @@
+main{
+  padding-top: 80px;
+}
+/** POSTLIST BEGIN **/
+.main-left{
+  min-height: 200px;
+  width: 75%;
+  background-color: #fff;
+  border: 1px solid #f8f9fa;
+}
+.post-filter{
+  height: 40px;
+  border-bottom: 1px solid #f8f9fa;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+.post-filter > a{
+  color: #777;
+  font-size: 85%;
+}
+.post-filter > a:hover{
+  color: #2680d9;
+}
+.post-filter > a:last-child{
+  float: right;
+}
+.post-filter > a:last-child > svg{
+  position: relative;
+  top: 2px;
+}
+/** POSTLIST MAIN **/
+.post-list{
+  height: 160px;
+  box-sizing: border-box;
+  padding: 13px 20px;
+  border-bottom: 1px solid #f8f9fa;
+}
+.post-list-header{
+  height: 24px;
+  color: #b2bac2;
+  font-size: 85%;
+}
+.post-list-header > span:first-child::after{
+  margin-left: 4px;
+  content: '·';
+  color: #777;
+}
+.post-list-title:hover{
+  text-decoration: underline;
+}
+.post-list-body{
+  margin-top: 5px;
+  height: 60px;
+  font-size: 85%;
+  color: #777;
+  line-height: 22px;
+}
+.post-list-footer{
+  height: 24px;
+  margin-top: 6px;
+  color: #777;
+  font-size: 85%;
+}
+.post-list-footer span{
+  cursor: pointer;
+}
+.post-list-footer span:hover{
+  color: #000;
+}
+/** POSTLIST END **/
