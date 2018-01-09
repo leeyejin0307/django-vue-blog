@@ -28,3 +28,23 @@ class Article(models.Model):
     def increase_views(self):
         self.views += 1
         self.save(update_fields=['views'])
+
+
+class Comment(models.Model):
+    """
+    Blog Comment
+    """
+    article = models.ForeignKey(Article, related_name="comment", verbose_name="文章"
+                                , on_delete=models.CASCADE,)
+    content = models.CharField(max_length=250, verbose_name="内容")
+    created = models.DateTimeField(auto_now_add=True, verbose_name="创建日期")
+    author = models.ForeignKey(User, related_name="comment", verbose_name="作者"
+                                , on_delete=models.CASCADE,)
+
+    class Meta:
+        ordering = ('-created',)
+        verbose_name = "评论"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.content

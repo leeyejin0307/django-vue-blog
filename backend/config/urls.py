@@ -1,17 +1,9 @@
 from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path, re_path
-from rest_framework.routers import DefaultRouter
 from rest_framework.documentation import include_docs_urls
 
-from Blog.views import ArticlesViewset
-
-
-router = DefaultRouter()
-
-# 文章
-router.register(r'posts', ArticlesViewset, base_name="article")
-
+from Blog.urls import router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
