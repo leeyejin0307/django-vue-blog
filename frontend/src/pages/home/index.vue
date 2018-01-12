@@ -32,7 +32,14 @@
                 {{ art.body }}
               </div>
               <div class="post-list-footer">
-                <span>{{ art.views }}</span>
+                <span>
+                  <icon name="eye" scale="0.8"></icon>
+                  {{ art.views }}
+                </span>
+                <span>
+                  <icon name="comments" scale="0.8"></icon>
+                  {{ art.comment_count }}
+                </span>
               </div>
             </article>
           </div>
@@ -45,16 +52,19 @@
         <!-- POSTLIST END -->
       </div>
     </main>
+    <galFt></galFt>
   </div>
 </template>
 
 <script>
 import '../../filter/moment.js'
 import galHd from '../../components/header'
+import galFt from '../../components/footer'
 import { articleList } from '../../api/api'
 export default {
   components: {
     galHd,
+    galFt,
   },
   data () {
     return {

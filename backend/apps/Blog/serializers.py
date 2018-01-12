@@ -11,12 +11,14 @@ class ArticlesSerializer(serializers.ModelSerializer):
 
     # return author username
     author = serializers.CharField(source="author.username")
-    comment = serializers.StringRelatedField(many=True)
+    comment_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Article
         fields = "__all__"
 
+    def get_comment_count(self, obj):
+        return obj.comment.count()
 
 class CommentsSerializer(serializers.ModelSerializer):
 

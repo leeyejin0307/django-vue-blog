@@ -1,6 +1,7 @@
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import viewsets, mixins
 from rest_framework.response import Response
+from rest_framework import filters
 
 from .models import Article, Comment
 from .serializers import ArticlesSerializer, CommentsSerializer
@@ -44,3 +45,5 @@ class CommentsViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin,
     queryset = Comment.objects.all()
     serializer_class = CommentsSerializer
     pagination_class = BasePagination
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('article__id',)

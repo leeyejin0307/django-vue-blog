@@ -10,5 +10,10 @@ export const articleList = () => {
 
 // 文章详情
 export const articleDetail = params => {
-  return axios.get(`${baseUrl}posts/${params}`)
+  return axios.get(`${baseUrl}posts/${params}/`)
+}
+
+// 评论列表
+export const commentList = params => {
+  return axios.get(`${baseUrl}comments/?search=${params}`)
 }
