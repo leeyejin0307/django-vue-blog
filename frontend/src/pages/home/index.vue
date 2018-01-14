@@ -29,7 +29,7 @@
                 </router-link>
               </h2>
               <div class="post-list-body">
-                {{ art.body }}
+                {{ cutBody(art.body) }}
               </div>
               <div class="post-list-footer">
                 <span>
@@ -47,7 +47,15 @@
           <div v-if="!(articles && articles.length)">
             还没有文章发布!
           </div>
-
+          <div class="post-footer">
+            <nav class="pagination">
+              <router-link v-for="p of pageCount"
+              :class="{'current': isSelect(p+1)}"
+              :to="`?page=${p+1}`" :key="p">
+                {{ p+1 }}
+              </router-link>
+            </nav>
+          </div>
         </section>
         <!-- POSTLIST END -->
       </div>
@@ -69,15 +77,41 @@ export default {
   data () {
     return {
       articles: [],
+      pageCount: 1,
+      pageCurrent: 1,
+    }
+  },
+  methods: {
+    // 问题文本截取
+    cutBody (value) {
+      if (value.length > 150) {
+        return value.slice(0, 150) + '...';
+      } else {
+        return value;
+      }
+    },
+    isSelect (p) {
+      let x = p === this.pageCurrent ? true : false
+      return x
+    },
+    // 获取数据
+    fetchData () {
+      if (this.$route.query.page) {
+        this.pageCurrent= this.$route.query.page
+      }
+      articleList(this.pageCurrent)
+      .then( res => {
+        this.articles = res.data.results
+        this.pageCount = [...Array(Math.ceil(res.data.count / 10)).keys()]
+      })
     }
   },
   created () {
-    // 获取文章列表
-    articleList()
-    .then( res => {
-      this.articles = res.data.results
-    })
-  }
+    this.fetchData()
+  },
+  watch: {
+    '$route': 'fetchData'
+  },
 }
 </script>
 
