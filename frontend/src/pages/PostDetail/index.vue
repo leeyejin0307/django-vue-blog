@@ -12,9 +12,11 @@
             <span>{{ article.comment_count }} 评论</span>
           </div>
           <div class="post-body">
-            <p>{{ article.body }}</p>
+            <vue-markdown :source="article.body">
+            </vue-markdown>
           </div>
           <div class="post-comment">
+            <section v-if="!(comments && comments.length)">还没有评论!</section>
             <section v-for="(comment, index) of comments">
               <span>{{ comment.author }}</span>
               <span>{{ comment.created|moment }}</span>
@@ -25,16 +27,22 @@
         <!-- POST DETAIL END -->
       </div>
     </main>
+    <galFt></galFt>
   </div>
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown'
+
 import '../../filter/moment.js'
 import galHd from '../../components/header'
+import galFt from '../../components/footer'
 import { articleDetail, commentList } from '../../api/api'
 export default {
   components: {
     galHd,
+    galFt,
+    VueMarkdown,
   },
   data () {
     return {
@@ -52,7 +60,6 @@ export default {
     commentList(this.$route.params.id)
     .then( res => {
       this.comments = res.data.results
-      console.log(this.comments)
     })
   }
 }
@@ -60,5 +67,6 @@ export default {
 </script>
 
 <style scoped>
+@import '../../assets/css/github-markdown.css';
 @import '../../assets/css/post_detail.css';
 </style>

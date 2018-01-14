@@ -28,9 +28,8 @@
                   {{ art.title }}
                 </router-link>
               </h2>
-              <div class="post-list-body">
-                {{ cutBody(art.body) }}
-              </div>
+              <vue-markdown :source="cutBody(art.body)" class="post-list-body">
+              </vue-markdown>
               <div class="post-list-footer">
                 <span>
                   <icon name="eye" scale="0.8"></icon>
@@ -65,6 +64,8 @@
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown'
+
 import '../../filter/moment.js'
 import galHd from '../../components/header'
 import galFt from '../../components/footer'
@@ -73,6 +74,7 @@ export default {
   components: {
     galHd,
     galFt,
+    VueMarkdown,
   },
   data () {
     return {
@@ -86,10 +88,10 @@ export default {
   methods: {
     isFilter (order) {
       if (order === 'created') {
-        this.orderByCreated = true
+        this.orderByCreated = !this.orderByCreated
         this.fetchData()
       } else if (order === 'views') {
-        this.orderByViews = true
+        this.orderByViews = !this.orderByViews
         this.fetchData()
       }
     },
@@ -130,5 +132,6 @@ export default {
 </script>
 
 <style scoped>
+@import '../../assets/css/github-markdown.css';
 @import '../../assets/css/home.css';
 </style>
