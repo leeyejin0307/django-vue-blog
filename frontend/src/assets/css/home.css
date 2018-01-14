@@ -17,6 +17,7 @@ main{
 .post-filter > a{
   color: #777;
   font-size: 85%;
+  cursor: pointer;
 }
 .post-filter > a:hover{
   color: #2680d9;

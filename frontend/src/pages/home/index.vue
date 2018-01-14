@@ -8,8 +8,8 @@
 
           <!-- POSTLIST HEADER -->
           <div class="post-filter">
-            <a href="#">最新</a>
-            <a href="#">热门</a>
+            <a @click="isFilter('created')">最新</a>
+            <a @click="isFilter('views')">热门</a>
             <a href="#">
               <icon name="rss" scale="0.8"></icon>
               RSS订阅
@@ -79,9 +79,20 @@ export default {
       articles: [],
       pageCount: 1,
       pageCurrent: 1,
+      orderByCreated: false,
+      orderByViews: false,
     }
   },
   methods: {
+    isFilter (order) {
+      if (order === 'created') {
+        this.orderByCreated = true
+        this.fetchData()
+      } else if (order === 'views') {
+        this.orderByViews = true
+        this.fetchData()
+      }
+    },
     // 问题文本截取
     cutBody (value) {
       if (value.length > 150) {
@@ -99,7 +110,10 @@ export default {
       if (this.$route.query.page) {
         this.pageCurrent= this.$route.query.page
       }
-      articleList(this.pageCurrent)
+      let views = this.orderByViews ? '&ordering=-views': ''
+      let created = this.orderByCreated ? '&ordering=-created': ''
+      let order = views + created
+      articleList(this.pageCurrent, order)
       .then( res => {
         this.articles = res.data.results
         this.pageCount = [...Array(Math.ceil(res.data.count / 10)).keys()]

@@ -26,6 +26,8 @@ class ArticlesViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin,
     queryset = Article.objects.all()
     serializer_class = ArticlesSerializer
     pagination_class = BasePagination
+    filter_backends = (filters.OrderingFilter,)
+    ordering_fields = ('created', 'views')
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
