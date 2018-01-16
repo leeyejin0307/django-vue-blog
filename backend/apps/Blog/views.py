@@ -3,8 +3,8 @@ from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 from rest_framework import filters
 
-from .models import Article, Comment
-from .serializers import ArticlesSerializer, CommentsSerializer
+from .models import Article, Comment, Category
+from .serializers import ArticlesSerializer, CommentsSerializer, CategorysSerializer
 
 
 class BasePagination(PageNumberPagination):
@@ -26,8 +26,9 @@ class ArticlesViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin,
     queryset = Article.objects.all()
     serializer_class = ArticlesSerializer
     pagination_class = BasePagination
-    filter_backends = (filters.OrderingFilter,)
+    filter_backends = (filters.OrderingFilter, filters.SearchFilter,)
     ordering_fields = ('created', 'views')
+    search_fields = ('category__text', )
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -49,3 +50,17 @@ class CommentsViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin,
     pagination_class = BasePagination
     filter_backends = (filters.SearchFilter,)
     search_fields = ('article__id',)
+
+
+class CategorysViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin,
+                        viewsets.GenericViewSet):
+    """
+    种类:
+        列表
+        详情
+    """
+    queryset = Category.objects.all()
+    serializer_class = CategorysSerializer
+    pagination_class = BasePagination
+    ordering_fields = ('created', 'views')
+    search_fields = ('category__id')

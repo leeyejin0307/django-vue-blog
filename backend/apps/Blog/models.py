@@ -5,6 +5,20 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
+class Category(models.Model):
+    """
+    Blog Category
+    """
+    text = models.CharField(max_length=200, verbose_name="类别",)
+
+    class Meta:
+        verbose_name = '种类'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.text
+
+
 class Article(models.Model):
     """
     Blog Article
@@ -16,6 +30,8 @@ class Article(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name="创建日期")
     updated = models.DateTimeField(auto_now=True, verbose_name="更新日期")
     views = models.PositiveIntegerField(default=0)
+    category = models.ForeignKey(Category, related_name="article", blank=True,
+                    null=True, verbose_name="种类", on_delete=models.CASCADE,)
 
     class Meta:
         ordering = ('-updated',)

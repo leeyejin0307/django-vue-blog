@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Home from '../pages/home/index'
 import PostDetail from '../pages/postdetail/index'
+import Category from '../pages/category/index'
 
 Vue.use(Router)
 
@@ -21,6 +23,12 @@ export default new Router({
       path: '/post/:id/',
       name: 'PostDetail',
       component: PostDetail,
+    },
+    {
+      /** 文章分类页 **/
+      path: '/categorys/',
+      name: 'Category',
+      component: Category,
     },
   ]
 })

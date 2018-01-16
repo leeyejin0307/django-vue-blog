@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Article, Comment
+from .models import Article, Comment, Category
 
 
 class ArticlesSerializer(serializers.ModelSerializer):
@@ -20,6 +20,7 @@ class ArticlesSerializer(serializers.ModelSerializer):
     def get_comment_count(self, obj):
         return obj.comment.count()
 
+
 class CommentsSerializer(serializers.ModelSerializer):
 
     """
@@ -31,4 +32,15 @@ class CommentsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
+        fields = "__all__"
+
+
+class CategorysSerializer(serializers.ModelSerializer):
+
+    """
+    Category Model Serializer
+    """
+
+    class Meta:
+        model = Category
         fields = "__all__"

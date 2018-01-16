@@ -5,8 +5,8 @@
     <div class="inner">
       <a class="logo">Blog</a>
       <nav>
-        <a href="/">首页</a>
-        <a href="/">分类</a>
+        <router-link :to="`/`">首页</router-link>
+        <router-link :to="`/categorys/`">分类</router-link>
         <a href="/">归档</a>
       </nav>
       <form class="">

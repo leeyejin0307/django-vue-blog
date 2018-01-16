@@ -110,12 +110,17 @@ export default {
     // 获取数据
     fetchData () {
       if (this.$route.query.page) {
-        this.pageCurrent= this.$route.query.page
+        this.pageCurrent = this.$route.query.page
       }
       let views = this.orderByViews ? '&ordering=-views': ''
       let created = this.orderByCreated ? '&ordering=-created': ''
+      if (this.$route.query.search) {
+        var search = `&search=${this.$route.query.search}`
+      } else {
+        var search = ''
+      }
       let order = views + created
-      articleList(this.pageCurrent, order)
+      articleList(this.pageCurrent, order, search)
       .then( res => {
         this.articles = res.data.results
         this.pageCount = [...Array(Math.ceil(res.data.count / 10)).keys()]
