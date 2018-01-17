@@ -1,9 +1,8 @@
-main{
-  padding-top: 80px;
+/** CATEGORY BEGIN **/
+.main-left ul li {
+  line-height: 30px;
 }
-.main-left{
-  min-height: 200px;
-  width: 75%;
-  background-color: #fff;
-  border: 1px solid #f8f9fa;
+.main-left ul li:hover {
+  text-decoration: underline;
 }
+/** CATEGORY END **/

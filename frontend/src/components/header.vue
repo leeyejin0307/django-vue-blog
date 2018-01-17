@@ -16,7 +16,10 @@
         </button>
       </form>
       <div class="user">
-        <icon name="sign-in" scale="1"></icon>
+        <span v-if="loginState === true">{{ userName }}</span>
+        <router-link v-if="loginState === false" :to="`/account/login/`">
+          <icon name="sign-in" scale="1"></icon>
+        </router-link>
       </div>
     </div>
   </header>
@@ -26,6 +29,14 @@
 
 <script>
 export default {
+  computed: {
+    loginState () {
+      return this.$store.state.loggedIn
+    },
+    userName () {
+      return this.$store.state.userInfo['name']
+    }
+  },
 }
 </script>
 

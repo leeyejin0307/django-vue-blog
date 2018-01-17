@@ -113,7 +113,6 @@ USE_TZ = False
 STATIC_URL = '/static/'
 
 # 跨域
-
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST = (
@@ -128,3 +127,11 @@ CORS_ALLOW_METHODS = (
     'DELETE',
     'OPTIONS'
 )
+
+# DRF配置
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}

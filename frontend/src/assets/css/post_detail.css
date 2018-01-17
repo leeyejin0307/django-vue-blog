@@ -1,15 +1,4 @@
-main{
-  padding-top: 80px;
-}
-
 /** POST DETAIL BEGIN **/
-.main-left{
-  min-height: 200px;
-  width: 75%;
-  background-color: #fff;
-  border: 1px solid #f8f9fa;
-  padding: 30px 25px;
-}
 .post-header{
   font-size: 85%;
   color: #777;

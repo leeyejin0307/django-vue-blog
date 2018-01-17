@@ -62,15 +62,25 @@ button:focus {outline:0;}
 /** STYLE RESET END **/
 
 /** COMMON STYLE BEGIN **/
-body{
+body {
   background-color: #f8f9fa;
 }
-.inner{
+.inner {
   position: relative;
   max-width: 1200px;
   height: 100%;
   margin: 0 auto;
   box-sizing: border-box;
   padding: 0 15px;
+}
+main {
+  padding-top: 80px;
+}
+.main-left {
+  min-height: 200px;
+  width: 75%;
+  background-color: #fff;
+  border: 1px solid #f8f9fa;
+  padding: 30px 25px;
 }
 /** COMMON STYLE END **/

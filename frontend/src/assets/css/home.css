@@ -1,12 +1,6 @@
-main{
-  padding-top: 80px;
-}
 /** POSTLIST BEGIN **/
 .main-left{
-  min-height: 200px;
-  width: 75%;
-  background-color: #fff;
-  border: 1px solid #f8f9fa;
+  padding: 0;
 }
 .post-filter{
   height: 40px;

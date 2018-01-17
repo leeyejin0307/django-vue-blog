@@ -22,3 +22,8 @@ export const commentList = params => {
 export const categoryList = () => {
   return axios.get(`${baseUrl}categorys/`)
 }
+
+// 用户登陆
+export const login = params => {
+  return axios.post(`${baseUrl}login/`, params)
+}
