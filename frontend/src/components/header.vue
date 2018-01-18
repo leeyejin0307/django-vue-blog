@@ -16,7 +16,9 @@
         </button>
       </form>
       <div class="user">
-        <span v-if="loginState === true">{{ userName }}</span>
+        <router-link v-if="loginState === true" :to="`/account/userinfo/`">
+          <icon name="user" scale="1.3"></icon>
+        </router-link>
         <router-link v-if="loginState === false" :to="`/account/login/`">
           <icon name="sign-in" scale="1"></icon>
         </router-link>

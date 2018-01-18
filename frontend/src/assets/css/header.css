@@ -41,7 +41,7 @@ nav > a:hover, .user svg:hover{
 }
 form{
   position: absolute;
-  right: 60px;
+  right: 40px;
   top: 12px;
   height: 36px;
   width: 250px;
@@ -65,8 +65,7 @@ form svg{
   position: absolute;
   top: 22px;
   right: 0;
-  width: 40px;
+  width: 20px;
   color: #777;
 }
-
 /** GLOBAL HEADER END **/

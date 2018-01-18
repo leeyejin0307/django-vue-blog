@@ -27,3 +27,8 @@ export const categoryList = () => {
 export const login = params => {
   return axios.post(`${baseUrl}login/`, params)
 }
+
+// 用户资料
+export const userInfo = params => {
+  return axios.get(`${baseUrl}users/${params}/`)
+}
