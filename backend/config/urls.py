@@ -6,7 +6,7 @@ from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework.routers import DefaultRouter
 
 from Blog.views import ArticlesViewset, CommentsViewset, CategorysViewset
-from BlogUser.views import UserProfileViewset
+from BlogUser.views import UserProfileViewset, UserRegisterViewset
 
 router = DefaultRouter()
 
@@ -14,9 +14,9 @@ router = DefaultRouter()
 router.register(r'posts', ArticlesViewset, base_name="article")
 router.register(r'comments', CommentsViewset, base_name="comment")
 router.register(r'categorys', CategorysViewset, base_name="category")
-# 文章
+# 用户
 router.register(r'users', UserProfileViewset, base_name="users")
-
+router.register(r'register', UserRegisterViewset, base_name="register")
 
 urlpatterns = [
     # admin

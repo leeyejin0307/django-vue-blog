@@ -32,3 +32,8 @@ export const login = params => {
 export const userInfo = params => {
   return axios.get(`${baseUrl}users/${params}/`)
 }
+
+// 用户注册
+export const userRegister = params => {
+  return axios.post(`${baseUrl}register/`, params)
+}
