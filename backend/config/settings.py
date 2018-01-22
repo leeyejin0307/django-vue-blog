@@ -33,7 +33,6 @@ INSTALLED_APPS = [
 
     'Blog',
     'BlogUser',
-    'BlogUserOperation',
 ]
 
 MIDDLEWARE = [

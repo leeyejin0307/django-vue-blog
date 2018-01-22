@@ -33,11 +33,10 @@ class ArticlesViewset(mixins.ListModelMixin, mixins.CreateModelMixin,
     """
     queryset = Article.objects.all()
     serializer_class = ArticlesSerializer
-    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
     pagination_class = BasePagination
     filter_backends = (filters.OrderingFilter, filters.SearchFilter,)
     ordering_fields = ('created', 'views')
-    search_fields = ('category__text', )
+    search_fields = ('category__text', 'title', 'author__username', )
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
