@@ -28,7 +28,10 @@ class CommentsSerializer(serializers.ModelSerializer):
     """
 
     # return author username
-    author = serializers.CharField(source="author.username")
+    author = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+    author_name = serializers.CharField(source="author.username", read_only=True)
 
     class Meta:
         model = Comment

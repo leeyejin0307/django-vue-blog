@@ -2,6 +2,7 @@ import axios from 'axios'
 import * as Cookies from 'js-cookie'
 
 const baseUrl = "http://localhost:8000/api/v1/"
+axios.defaults.headers.common['Authorization'] = 'JWT ' + Cookies.get('token')
 
 // 文章列表
 export const articleList = (page, order, search) => {
@@ -36,4 +37,9 @@ export const userInfo = params => {
 // 用户注册
 export const userRegister = params => {
   return axios.post(`${baseUrl}register/`, params)
+}
+
+// 添加评论
+export const commentPost = params => {
+  return axios.post(`${baseUrl}comments/`, params)
 }

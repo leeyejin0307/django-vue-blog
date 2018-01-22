@@ -3,6 +3,9 @@ from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 from rest_framework import filters
 
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+from rest_framework.authentication import SessionAuthentication
+
 from .models import Article, Comment, Category
 from .serializers import ArticlesSerializer, CommentsSerializer, CategorysSerializer
 
@@ -38,18 +41,21 @@ class ArticlesViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin,
         return Response(serializer.data)
 
 
-class CommentsViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin,
+class CommentsViewset(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.RetrieveModelMixin,
                         viewsets.GenericViewSet):
     """
     评论:
         列表
         详情
+        创建
     """
     queryset = Comment.objects.all()
     serializer_class = CommentsSerializer
+    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
     pagination_class = BasePagination
     filter_backends = (filters.SearchFilter,)
     search_fields = ('article__id',)
+
 
 
 class CategorysViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin,
