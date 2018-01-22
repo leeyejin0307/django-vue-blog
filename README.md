@@ -25,4 +25,6 @@ $ python createsuperuser
 ...
 $ python manage.py runserver
 ```
-Now, open a Web browser and go to "http://localhost:8080/#/".
+
+Now, open a Web browser and go to "http://localhost:8000/admin/" create posts.
+go to "http://localhost:8080/#/" view.
