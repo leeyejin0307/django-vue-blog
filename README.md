@@ -1,6 +1,6 @@
 This repo is a demo of django and vue.
 
-##How to use
+## How to use
 
 First, clone the repo and install the dependencies.
 
