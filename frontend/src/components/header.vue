@@ -7,7 +7,6 @@
       <nav>
         <router-link :to="`/`">首页</router-link>
         <router-link :to="`/categorys/`">分类</router-link>
-        <a href="/">归档</a>
       </nav>
       <form class="">
         <input type="text" placeholder="搜索...">

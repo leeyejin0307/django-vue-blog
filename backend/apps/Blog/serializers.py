@@ -9,9 +9,12 @@ class ArticlesSerializer(serializers.ModelSerializer):
     Article Model Serializer
     """
 
-    # return author username
-    author = serializers.CharField(source="author.username")
+    author = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+    author_name = serializers.CharField(source="author.username", read_only=True)
     comment_count = serializers.SerializerMethodField()
+    views =  serializers.CharField(read_only=True)
 
     class Meta:
         model = Article

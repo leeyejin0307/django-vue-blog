@@ -2,13 +2,18 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 from rest_framework import filters
+from rest_framework import status
 
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework.authentication import SessionAuthentication
 
+from django.contrib.auth import get_user_model
+
 from .models import Article, Comment, Category
 from .serializers import ArticlesSerializer, CommentsSerializer, CategorysSerializer
 
+
+User = get_user_model()
 
 class BasePagination(PageNumberPagination):
     """
@@ -19,8 +24,8 @@ class BasePagination(PageNumberPagination):
     max_page_size = 100
 
 
-class ArticlesViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin,
-                        viewsets.GenericViewSet):
+class ArticlesViewset(mixins.ListModelMixin, mixins.CreateModelMixin,
+                      mixins.RetrieveModelMixin, viewsets.GenericViewSet, ):
     """
     文章:
         列表
@@ -28,6 +33,7 @@ class ArticlesViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin,
     """
     queryset = Article.objects.all()
     serializer_class = ArticlesSerializer
+    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
     pagination_class = BasePagination
     filter_backends = (filters.OrderingFilter, filters.SearchFilter,)
     ordering_fields = ('created', 'views')
@@ -39,6 +45,16 @@ class ArticlesViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin,
         # 统计文章阅读量
         instance.increase_views()
         return Response(serializer.data)
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        user_name = self.request.user
+        user = User.objects.get(username=user_name)
+        user.increase_point()
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class CommentsViewset(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.RetrieveModelMixin,
@@ -55,7 +71,6 @@ class CommentsViewset(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.Ret
     pagination_class = BasePagination
     filter_backends = (filters.SearchFilter,)
     search_fields = ('article__id',)
-
 
 
 class CategorysViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin,

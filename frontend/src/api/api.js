@@ -43,3 +43,8 @@ export const userRegister = params => {
 export const commentPost = params => {
   return axios.post(`${baseUrl}comments/`, params)
 }
+
+// 发布文章
+export const articlePost = params => {
+  return axios.post(`${baseUrl}posts/`, params)
+}

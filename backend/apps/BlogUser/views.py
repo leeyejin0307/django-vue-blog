@@ -6,6 +6,7 @@ from rest_framework import status
 from rest_framework_jwt.serializers import jwt_encode_handler, jwt_payload_handler
 
 from django.contrib.auth import get_user_model
+
 from .serializers import UserProfileSerializer, UserRegisterSerializer
 
 User = get_user_model()
@@ -43,7 +44,6 @@ class UserRegisterViewset(CreateModelMixin, viewsets.GenericViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = self.perform_create(serializer)
-
         re_dict = serializer.data
         payload = jwt_payload_handler(user)
         re_dict["token"] = jwt_encode_handler(payload)

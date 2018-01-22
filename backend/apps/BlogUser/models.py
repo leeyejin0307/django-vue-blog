@@ -15,3 +15,7 @@ class UserProfile(AbstractUser):
 
     def __str__(self):
         return self.username
+
+    def increase_point(self):
+        self.point += 1
+        self.save(update_fields=['point'])

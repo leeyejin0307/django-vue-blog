@@ -10,17 +10,13 @@
           <div class="post-filter">
             <a @click="isFilter('created')">最新</a>
             <a @click="isFilter('views')">热门</a>
-            <a href="#">
-              <icon name="rss" scale="0.8"></icon>
-              RSS订阅
-            </a>
           </div>
 
           <!-- POSTLIST MAIN -->
           <div v-if="articles && articles.length">
             <article class="post-list" v-for="(art, index) of articles">
               <div class="post-list-header">
-                <span>{{ art.author }}</span>
+                <span>{{ art.author_name }}</span>
                 <span>{{ art.updated|moment }}</span>
               </div>
               <h2 class="post-list-title">

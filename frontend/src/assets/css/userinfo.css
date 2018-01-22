@@ -4,3 +4,6 @@
 .main-left span:last-child {
   cursor: pointer;
 }
+.main-left span.p {
+  cursor: pointer;
+}

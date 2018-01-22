@@ -7,7 +7,8 @@ import PostDetail from '../pages/postdetail/index'
 import Category from '../pages/category/index'
 import Login from '../pages/account/login'
 import Register from '../pages/account/register'
-import UserInfo from '../pages/account/userinfo'
+import UserInfo from '../pages/account/userInfo'
+import PostArticle from '../pages/account/postArticle'
 
 import store from '../store/index.js'
 import * as types from '../store/mutation-types'
@@ -66,6 +67,15 @@ const routes = [
       path: '/account/userinfo/',
       name: 'userinfo',
       component: UserInfo,
+      meta: {
+        requireAuth: true,
+      }
+    },
+    {
+      /** 个人资料 **/
+      path: '/account/postarticle/',
+      name: 'PostArticle',
+      component: PostArticle,
       meta: {
         requireAuth: true,
       }

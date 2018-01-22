@@ -7,6 +7,9 @@
         <section class="main-left">
           <span>用户名: {{ userName }}</span></br>
           <span>个人积分: {{ points }}</span></br>
+          <router-link class="p" tag="span" :to="`/account/postarticle/`">
+            发布文章
+          </router-link></br>
           <span @click="loginOut">注销</span>
         </section>
       </div>
